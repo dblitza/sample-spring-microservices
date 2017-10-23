@@ -2,7 +2,7 @@ package pl.piomin.microservices.customer.model;
 
 import java.util.List;
 
-public class Customer {
+public class Weather {
 
 	private Integer id;
 	private String pesel;
@@ -10,11 +10,11 @@ public class Customer {
 	private CustomerType type;
 	private List<Account> accounts;
 
-	public Customer() {
+	public Weather() {
 		
 	}
 	
-	public Customer(Integer id, String pesel, String name, CustomerType type) {
+	public Weather(Integer id, String pesel, String name, CustomerType type) {
 		this.id = id;
 		this.pesel = pesel;
 		this.name = name;
