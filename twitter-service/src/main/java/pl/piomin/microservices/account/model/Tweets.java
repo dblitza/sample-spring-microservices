@@ -1,16 +1,16 @@
 package pl.piomin.microservices.account.model;
 
-public class Account {
+public class Tweets {
 
 	private Integer id;
 	private Integer customerId;
 	private String number;
 
-	public Account() {
+	public Tweets() {
 
 	}
 
-	public Account(Integer id, Integer customerId, String number) {
+	public Tweets(Integer id, Integer customerId, String number) {
 		this.id = id;
 		this.customerId = customerId;
 		this.number = number;

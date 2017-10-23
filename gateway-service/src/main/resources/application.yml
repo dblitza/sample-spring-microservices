@@ -14,10 +14,10 @@ zuul:
   routes:
     account: 
       path: /account/**
-      serviceId: account-service
+      serviceId: twitter-service
     customer: 
       path: /customer/**
-      serviceId: customer-service          
+      serviceId: weather-service          
 
 ribbon:
   eureka:

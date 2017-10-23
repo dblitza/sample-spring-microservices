@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.piomin.microservices.customer.model.Account;
 
-@FeignClient("account-service")
+@FeignClient("twitter-service")
 public interface AccountClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/customer/{customerId}")
