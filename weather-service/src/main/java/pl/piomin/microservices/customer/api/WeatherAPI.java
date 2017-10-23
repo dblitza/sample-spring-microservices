@@ -1,5 +1,11 @@
 package pl.piomin.microservices.customer.api;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,11 +31,81 @@ public class WeatherAPI {
 	private List<Weather> weather;
 	
 	public WeatherAPI() {
-		weather = new ArrayList<>();
-		weather.add(new Weather(1, "12345", "Adam Kowalski", CustomerType.INDIVIDUAL));
-		weather.add(new Weather(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
-		weather.add(new Weather(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
-		weather.add(new Weather(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
+		
+		String output = "";
+		String latitude = "";
+		String longitude = "";
+		String temperature = null;
+		String theCity = null;
+
+		  try {
+
+			URL url = new URL("http://api.wunderground.com/api/48633266480f7fa8/conditions/q/CA/San_Francisco.json");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			if (conn.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+			}
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+				
+				if(output.contains("latitude")) {
+					String[] aSplit = output.split(":\"");
+					String[] newSplit = aSplit[1].split("\"");
+					latitude = newSplit[0];
+					
+				}
+				if(output.contains("longitude")) {
+					String[] aSplit = output.split(":\"");
+					String[] newSplit = aSplit[1].split("\"");
+					longitude = newSplit[0];
+				}
+				if(output.contains("city")) {
+					System.out.println(output);
+						String[] aSplit = output.split(":\"");
+						String[] newSplit = aSplit[1].split("\"");
+						theCity = newSplit[0];
+
+
+				}
+				
+				if(output.contains("temp_f")) {
+					System.out.println(output);
+					String[] aSplit = output.split(":");
+					String[] newSplit = aSplit[1].split(",");
+					temperature = newSplit[0];
+				}
+			}
+
+			conn.disconnect();
+
+		  } catch (MalformedURLException e) {
+
+			e.printStackTrace();
+
+		  } catch (IOException e) {
+
+			e.printStackTrace();
+
+		  }
+		  
+		  weather = new ArrayList<>();
+		  weather.add(new Weather(1, temperature, theCity, CustomerType.INDIVIDUAL));
+		  weather.add(new Weather(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
+		  weather.add(new Weather(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
+		  weather.add(new Weather(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
+//		weather = new ArrayList<>();
+//		weather.add(new Weather(1, "12345", "Adam Kowalski", CustomerType.INDIVIDUAL));
+//		weather.add(new Weather(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
+//		weather.add(new Weather(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
+//		weather.add(new Weather(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
 	}
 	
 	@RequestMapping("/customers/pesel/{pesel}")
