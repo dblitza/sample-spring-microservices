@@ -115,7 +115,7 @@ public class WeatherAPI {
 	@RequestMapping("/customers/pesel/{pesel}")
 	public Weather findByPesel(@PathVariable("pesel") String pesel) {
 		logger.info(String.format("Weather.findByPesel(%s)", pesel));
-		return weather.stream().filter(it -> it.getPesel().equals(pesel)).findFirst().get();	
+		return weather.stream().filter(it -> it.getTemperature().equals(pesel)).findFirst().get();	
 	}
 	
 	@RequestMapping("/customers")

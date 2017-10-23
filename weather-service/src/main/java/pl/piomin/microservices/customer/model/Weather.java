@@ -5,7 +5,7 @@ import java.util.List;
 public class Weather {
 
 	private Integer id;
-	private String pesel;
+	private String temperature;
 	private String name;
 	private CustomerType type;
 	private List<Tweets> accounts;
@@ -14,9 +14,9 @@ public class Weather {
 		
 	}
 	
-	public Weather(Integer id, String pesel, String name, CustomerType type) {
+	public Weather(Integer id, String theTemperature, String name, CustomerType type) {
 		this.id = id;
-		this.pesel = pesel;
+		this.temperature = theTemperature;
 		this.name = name;
 		this.type = type;
 	}
@@ -29,12 +29,12 @@ public class Weather {
 		this.id = id;
 	}
 
-	public String getPesel() {
-		return pesel;
+	public String getTemperature() {
+		return temperature;
 	}
 
-	public void setPesel(String pesel) {
-		this.pesel = pesel;
+	public void setTemperature(String temperature) {
+		this.temperature = temperature;
 	}
 
 	public String getName() {

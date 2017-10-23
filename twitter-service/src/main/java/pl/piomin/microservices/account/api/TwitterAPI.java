@@ -45,7 +45,7 @@ public class TwitterAPI {
 
 	    	    
 	    Query query = new Query(keyword).geoCode(new GeoLocation(lat,lon), res, resUnit); 
-	    query.count(10);
+	    query.count(5);
 	    try {
 			QueryResult result = twitter.search(query);
 		    for (Status tweet : result.getTweets()) {
