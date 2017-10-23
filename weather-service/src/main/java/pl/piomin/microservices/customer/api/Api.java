@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.piomin.microservices.customer.intercomm.TwitterClient;
-import pl.piomin.microservices.customer.model.Account;
+import pl.piomin.microservices.customer.model.Tweets;
 import pl.piomin.microservices.customer.model.Weather;
 import pl.piomin.microservices.customer.model.CustomerType;
 
@@ -34,21 +34,21 @@ public class Api {
 	
 	@RequestMapping("/customers/pesel/{pesel}")
 	public Weather findByPesel(@PathVariable("pesel") String pesel) {
-		logger.info(String.format("Customer.findByPesel(%s)", pesel));
+		logger.info(String.format("Weather.findByPesel(%s)", pesel));
 		return tweets.stream().filter(it -> it.getPesel().equals(pesel)).findFirst().get();	
 	}
 	
 	@RequestMapping("/customers")
 	public List<Weather> findAll() {
-		logger.info("Customer.findAll()");
+		logger.info("Weather.findAll()");
 		return tweets;
 	}
 	
 	@RequestMapping("/customers/{id}")
 	public Weather findById(@PathVariable("id") Integer id) {
-		logger.info(String.format("Customer.findById(%s)", id));
+		logger.info(String.format("Weather.findById(%s)", id));
 		Weather weather = tweets.stream().filter(it -> it.getId().intValue()==id.intValue()).findFirst().get();
-		List<Account> accounts =  twitterClient.getAccounts(id);
+		List<Tweets> accounts =  twitterClient.getAccounts(id);
 		weather.setAccounts(accounts);
 		return weather;
 	}

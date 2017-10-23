@@ -3,16 +3,15 @@ package pl.piomin.microservices.customer.model;
 public class Tweets {
 
 	private Integer id;
-	private Integer customerId;
 	private String number;
 
 	public Tweets() {
-
+		
 	}
 
-	public Tweets(Integer id, Integer customerId, String number) {
+	public Tweets(Integer id, String number) {
+		super();
 		this.id = id;
-		this.customerId = customerId;
 		this.number = number;
 	}
 
@@ -22,14 +21,6 @@ public class Tweets {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
 	}
 
 	public String getNumber() {

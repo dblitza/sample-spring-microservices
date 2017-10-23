@@ -8,7 +8,7 @@ public class Weather {
 	private String pesel;
 	private String name;
 	private CustomerType type;
-	private List<Account> accounts;
+	private List<Tweets> accounts;
 
 	public Weather() {
 		
@@ -53,11 +53,11 @@ public class Weather {
 		this.type = type;
 	}
 
-	public List<Account> getAccounts() {
+	public List<Tweets> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(List<Account> accounts) {
+	public void setAccounts(List<Tweets> accounts) {
 		this.accounts = accounts;
 	}
 

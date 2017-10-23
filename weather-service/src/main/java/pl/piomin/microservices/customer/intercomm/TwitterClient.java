@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.piomin.microservices.customer.model.Account;
+import pl.piomin.microservices.customer.model.Tweets;
 
 @FeignClient("twitter-service")
 public interface TwitterClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/accounts/customer/{customerId}")
-    List<Account> getAccounts(@PathVariable("customerId") Integer customerId);
+    List<Tweets> getAccounts(@PathVariable("customerId") Integer customerId);
     
 }
