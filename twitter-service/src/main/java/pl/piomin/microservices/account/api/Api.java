@@ -14,37 +14,37 @@ import pl.piomin.microservices.account.model.Tweets;
 @RestController
 public class Api {
 
-	private List<Tweets> accounts;
+	private List<Tweets> tweets;
 	
 	protected Logger logger = Logger.getLogger(Api.class.getName());
 	
 	public Api() {
-		accounts = new ArrayList<>();
-		accounts.add(new Tweets(1, 1, "111111"));
-		accounts.add(new Tweets(2, 2, "222222"));
-		accounts.add(new Tweets(3, 3, "333333"));
-		accounts.add(new Tweets(4, 4, "444444"));
-		accounts.add(new Tweets(5, 1, "555555"));
-		accounts.add(new Tweets(6, 2, "666666"));
-		accounts.add(new Tweets(7, 2, "777777"));
+		tweets = new ArrayList<>();
+		tweets.add(new Tweets(1, 1, "111111"));
+		tweets.add(new Tweets(2, 2, "222222"));
+		tweets.add(new Tweets(3, 3, "333333"));
+		tweets.add(new Tweets(4, 4, "444444"));
+		tweets.add(new Tweets(5, 1, "555555"));
+		tweets.add(new Tweets(6, 2, "666666"));
+		tweets.add(new Tweets(7, 2, "777777"));
 	}
 	
-	@RequestMapping("/accounts/{number}")
+	@RequestMapping("/twitter/{number}")
 	public Tweets findByNumber(@PathVariable("number") String number) {
-		logger.info(String.format("Account.findByNumber(%s)", number));
-		return accounts.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
+		logger.info(String.format("Tweets.findByNumber(%s)", number));
+		return tweets.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
 	}
 	
-	@RequestMapping("/accounts/customer/{customer}")
+	@RequestMapping("/twitter/customer/{customer}")
 	public List<Tweets> findByCustomer(@PathVariable("customer") Integer customerId) {
 		logger.info(String.format("Account.findByCustomer(%s)", customerId));
-		return accounts.stream().filter(it -> it.getCustomerId().intValue()==customerId.intValue()).collect(Collectors.toList());
+		return tweets.stream().filter(it -> it.getCustomerId().intValue()==customerId.intValue()).collect(Collectors.toList());
 	}
 	
-	@RequestMapping("/accounts")
+	@RequestMapping("/twitter")
 	public List<Tweets> findAll() {
 		logger.info("Account.findAll()");
-		return accounts;
+		return tweets;
 	}
 	
 }
