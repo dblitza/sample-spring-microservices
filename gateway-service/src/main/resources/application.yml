@@ -17,7 +17,10 @@ zuul:
       serviceId: twitter-service
     customer: 
       path: /weather/**
-      serviceId: weather-service          
+      serviceId: weather-service
+    bootstrap:
+      path: /sidecar-service/**
+      serviceId: sidecar-service         
 
 ribbon:
   eureka:

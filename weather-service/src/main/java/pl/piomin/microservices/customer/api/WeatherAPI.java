@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.piomin.microservices.customer.intercomm.NodeJSClient;
 import pl.piomin.microservices.customer.intercomm.TwitterClient;
 import pl.piomin.microservices.customer.model.Tweets;
 import pl.piomin.microservices.customer.model.Weather;
@@ -25,6 +26,9 @@ public class WeatherAPI {
 	
 	@Autowired
 	private TwitterClient twitterClient;
+	
+	@Autowired
+	private NodeJSClient nodeJSClient;
 	
 	protected Logger logger = Logger.getLogger(WeatherAPI.class.getName());
 	
@@ -124,8 +128,9 @@ public class WeatherAPI {
 	public Weather findById(@PathVariable("id") Integer id) {
 		logger.info(String.format("Weather.findById(%s)", id));
 		Weather weathers = weather.stream().filter(it -> it.getId().intValue()==id.intValue()).findFirst().get();
-		List<Tweets> accounts =  twitterClient.getAccounts(id);
-		weathers.setAccounts(accounts);
+		List<Tweets> tweets =  twitterClient.getAccounts(id);
+		String nodeJS = nodeJSClient.getNodeJS();
+		weathers.setAccounts(tweets);
 		return weathers;
 	}
 	

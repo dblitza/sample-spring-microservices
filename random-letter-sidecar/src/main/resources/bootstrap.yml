@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: sidecar-service
+  # profiles: random1
+        
+server:
+  port: 9595
+
+sidecar:
+  port: 3000
+  home-page-uri: http://localhost:${sidecar.port}/
+  health-uri: http://localhost:${sidecar.port}/health.json
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+  
+logging:
+#   file: /var/memento/security.log
+  level:
+    org.springframework.web: 'DEBUG'
+
+# ---    
+# spring:
+#   application:
+#     name: random-letter-ms  
+#   profiles: random2
+# ---
+# server:
+#   port: 9696
+
+# sidecar:
+#   port: 3001
+#   health-uri: http://localhost:${sidecar.port}/health.json
+
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: http://localhost:8761/eureka/
+#     healthcheck:
+#       enabled: true
+#   instance:
+#     instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+  
+# logging:
+# #   file: /var/memento/security.log
+#   level:
+#     org.springframework.web: 'DEBUG'
