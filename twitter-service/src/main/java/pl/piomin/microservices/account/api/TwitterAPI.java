@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.piomin.microservices.account.model.Tweets;
 
 @RestController
-public class Api {
+public class TwitterAPI {
 
 	private List<Tweets> tweets;
 	
-	protected Logger logger = Logger.getLogger(Api.class.getName());
+	protected Logger logger = Logger.getLogger(TwitterAPI.class.getName());
 	
-	public Api() {
+	public TwitterAPI() {
 		tweets = new ArrayList<>();
 		tweets.add(new Tweets(1, 1, "111111"));
 		tweets.add(new Tweets(2, 2, "222222"));

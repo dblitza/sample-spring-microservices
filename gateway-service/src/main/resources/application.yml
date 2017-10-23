@@ -13,10 +13,10 @@ zuul:
   prefix: /api
   routes:
     account: 
-      path: /account/**
+      path: /twitter/**
       serviceId: twitter-service
     customer: 
-      path: /customer/**
+      path: /weather/**
       serviceId: weather-service          
 
 ribbon:
