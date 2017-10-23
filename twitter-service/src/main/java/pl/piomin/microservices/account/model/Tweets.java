@@ -24,7 +24,7 @@ public class Tweets {
 		this.id = id;
 	}
 
-	public Integer getCustomerId() {
+	public Integer getWeatherCity() {
 		return customerId;
 	}
 

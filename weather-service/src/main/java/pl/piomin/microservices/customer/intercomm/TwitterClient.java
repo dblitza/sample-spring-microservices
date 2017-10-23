@@ -12,7 +12,7 @@ import pl.piomin.microservices.customer.model.Tweets;
 @FeignClient("twitter-service")
 public interface TwitterClient {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/twitter/customer/{customerId}")
-    List<Tweets> getAccounts(@PathVariable("customerId") Integer customerId);
+    @RequestMapping(method = RequestMethod.GET, value = "/twitter/weather/{weatherCity}")
+    List<Tweets> getAccounts(@PathVariable("weatherCity") Integer weatherCity);
     
 }

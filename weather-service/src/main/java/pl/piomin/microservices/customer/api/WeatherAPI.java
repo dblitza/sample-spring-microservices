@@ -105,24 +105,20 @@ public class WeatherAPI {
 		  weather.add(new Weather(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
 		  weather.add(new Weather(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
 		  weather.add(new Weather(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
-//		weather = new ArrayList<>();
-//		weather.add(new Weather(1, "12345", "Adam Kowalski", CustomerType.INDIVIDUAL));
-//		weather.add(new Weather(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
-//		weather.add(new Weather(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
-//		weather.add(new Weather(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
+
 	}
 	
-	@RequestMapping("/customers/pesel/{pesel}")
-	public Weather findByPesel(@PathVariable("pesel") String pesel) {
-		logger.info(String.format("Weather.findByPesel(%s)", pesel));
-		return weather.stream().filter(it -> it.getTemperature().equals(pesel)).findFirst().get();	
-	}
+//	@RequestMapping("/customers/pesel/{pesel}")
+//	public Weather findByPesel(@PathVariable("pesel") String pesel) {
+//		logger.info(String.format("Weather.findByPesel(%s)", pesel));
+//		return weather.stream().filter(it -> it.getTemperature().equals(pesel)).findFirst().get();	
+//	}
 	
-	@RequestMapping("/customers")
-	public List<Weather> findAll() {
-		logger.info("Weather.findAll()");
-		return weather;
-	}
+//	@RequestMapping("/customers")
+//	public List<Weather> findAll() {
+//		logger.info("Weather.findAll()");
+//		return weather;
+//	}
 	
 	@RequestMapping("/weather/{id}")
 	public Weather findById(@PathVariable("id") Integer id) {

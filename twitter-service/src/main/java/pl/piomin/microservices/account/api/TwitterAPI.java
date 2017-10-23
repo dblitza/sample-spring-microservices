@@ -64,23 +64,23 @@ public class TwitterAPI {
 		tweets.add(new Tweets(2, 2, "222222"));
 	}
 	
-	@RequestMapping("/twitter/{number}")
-	public Tweets findByNumber(@PathVariable("number") String number) {
-		logger.info(String.format("Tweets.findByNumber(%s)", number));
-		return tweets.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
+//	@RequestMapping("/twitter/{number}")
+//	public Tweets findByNumber(@PathVariable("number") String number) {
+//		logger.info(String.format("Tweets.findByNumber(%s)", number));
+//		return tweets.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
+//	}
+	
+	@RequestMapping("/twitter/weather/{weatherCity}")
+	public List<Tweets> findTweetsByCity(@PathVariable("weatherCity") Integer weatherCity) {
+		logger.info(String.format("Twitter.findTweetsByCity(%s)", weatherCity));
+		return tweets.stream().filter(it -> it.getWeatherCity().intValue()==weatherCity.intValue()).collect(Collectors.toList());
 	}
 	
-	@RequestMapping("/twitter/customer/{customer}")
-	public List<Tweets> findByCustomer(@PathVariable("customer") Integer customerId) {
-		logger.info(String.format("Account.findByCustomer(%s)", customerId));
-		return tweets.stream().filter(it -> it.getCustomerId().intValue()==customerId.intValue()).collect(Collectors.toList());
-	}
-	
-	@RequestMapping("/twitter")
-	public List<Tweets> findAll() {
-		logger.info("Account.findAll()");
-		return tweets;
-	}
+//	@RequestMapping("/twitter")
+//	public List<Tweets> findAll() {
+//		logger.info("Account.findAll()");
+//		return tweets;
+//	}
 	
 public List<Tweets> getTweetsGeocode(List<Double> coordinates) {
 		
