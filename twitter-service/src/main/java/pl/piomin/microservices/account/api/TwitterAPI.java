@@ -45,7 +45,7 @@ public class TwitterAPI {
 
 	    	    
 	    Query query = new Query(keyword).geoCode(new GeoLocation(lat,lon), res, resUnit); 
-	    query.count(5);
+	    query.count(1);
 	    try {
 			QueryResult result = twitter.search(query);
 		    for (Status tweet : result.getTweets()) {
@@ -63,26 +63,18 @@ public class TwitterAPI {
 	    tweets.add(new Tweets(1, 1, theTweets));
 		tweets.add(new Tweets(2, 2, "222222"));
 	}
-	
-//	@RequestMapping("/twitter/{number}")
-//	public Tweets findByNumber(@PathVariable("number") String number) {
-//		logger.info(String.format("Tweets.findByNumber(%s)", number));
-//		return tweets.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
-//	}
-	
+		
 	@RequestMapping("/twitter/weather/{weatherCity}")
 	public List<Tweets> findTweetsByCity(@PathVariable("weatherCity") Integer weatherCity) {
 		logger.info(String.format("Twitter.findTweetsByCity(%s)", weatherCity));
+		
+		List<Tweets> theTweets = getTweetsGeocode();
 		return tweets.stream().filter(it -> it.getWeatherCity().intValue()==weatherCity.intValue()).collect(Collectors.toList());
 	}
 	
-//	@RequestMapping("/twitter")
-//	public List<Tweets> findAll() {
-//		logger.info("Account.findAll()");
-//		return tweets;
-//	}
-	
-public List<Tweets> getTweetsGeocode(List<Double> coordinates) {
+//	public List<Tweets> getTweetsGeocode(List<Double> coordinates) {
+	public List<Tweets> getTweetsGeocode() {
+
 		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
@@ -93,8 +85,10 @@ public List<Tweets> getTweetsGeocode(List<Double> coordinates) {
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 		
-	    double lat = coordinates.get(0);
-	    double lon = coordinates.get(1);
+	    double lat = 37.770599;
+	    double lon = -122.423500;
+//	    double lat = coordinates.get(0);
+//	    double lon = coordinates.get(1);
 	    double res = 50;
 	    String resUnit = "mi";
 	    String keyword = "weather";

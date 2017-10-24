@@ -125,7 +125,7 @@ public class WeatherAPI {
 		logger.info(String.format("Weather.findById(%s)", id));
 		Weather weathers = weather.stream().filter(it -> it.getId().intValue()==id.intValue()).findFirst().get();
 		List<Tweets> tweets =  twitterClient.getAccounts(id);
-		String nodeJS = nodeJSClient.getNodeJS();
+//		String nodeJS = nodeJSClient.getNodeJS();
 		weathers.setAccounts(tweets);
 		return weathers;
 	}

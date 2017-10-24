@@ -39,3 +39,12 @@ logging:
   level:
     ROOT: INFO
     org.springframework.web: DEBUG
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
